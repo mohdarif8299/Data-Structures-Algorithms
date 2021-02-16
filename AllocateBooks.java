@@ -30,7 +30,7 @@ public class AllocateBooks {
         long low = max;
         long high = sum;
         long ans = low;
-        while(low<high) {
+        while(low<=high) {
             long mid =(low+high)/2;
             if(checkAllocation(A,mid,B)) {
                 ans = mid;
