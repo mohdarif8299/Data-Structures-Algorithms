@@ -1,25 +1,29 @@
 import java.util.*;
 public class CountSubarray {
     public static void main(String[] args) {
-        int A[] = {2,1,2};
+        int A[] = {1,2,3,4,5};
         System.out.println(solve(A));
     }
     public static int solve(int A[]) {
-        int count=0;
-        Map<Integer,Integer> map = new HashMap<>();
-        int L=0,R=0;
-        while(R<A.length) {
-         
-            if(map.containsKey(A[R])) {
-                L++;
-                count+=(R-L+1);
+        Set<Integer> set = new HashSet<>();
+        long subArrayCount = 0;
+        set.add(A[0]);
+        int i=0,j=1;
+        while(i<j && j<A.length) {
+            if(!set.contains(A[j])) {
+                set.add(A[j]);
+                j++;
+                if(j==A.length) {
+                    subArrayCount+=((j-i)*(j-i+1))/2;
+                }
             }
             else {
-                map.put(A[R],1);
-                count+=(R-L+1);
+                set.remove(A[i]);
+                subArrayCount+=(j-i);
+                i++;
             }
-            R++;
+            
         }
-        return count;
+        return (int)(subArrayCount%1000000007);
     }
 }
