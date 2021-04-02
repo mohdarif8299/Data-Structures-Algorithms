@@ -1,0 +1,92 @@
+public class MyClass {
+    public static ListNode head = null;
+    public static ListNode tail = null;
+    public static ListNode head2 = null;
+    public static ListNode tail2 = null;
+    public static ListNode tailEnd = null;
+    public static class ListNode {
+            public int val;
+            public ListNode next;
+             ListNode(int x) { val = x; next = null; }
+    }
+    public static void main(String args[]) {
+        insert_node_end_1(5);
+        insert_node_end_1(8);
+        insert_node_end_1(20);
+        insert_node_end_2(4);
+        insert_node_end_2(11);
+        insert_node_end_2(25);
+        // ListNode temp1 = head;
+        // while(temp1!=null) {
+        //     System.out.print(temp1.val+" ");
+        //     temp1 = temp1.next;
+        // }
+        // System.out.println();
+        // ListNode temp2 = head2;
+        // while(temp2!=null) {
+        //     System.out.print(temp2.val+" ");
+        //     temp2 = temp2.next;
+        // }
+        ListNode temp = mergeTwoLists(head,head2);
+        while(temp!=null) {
+            System.out.print(temp.val+" ");
+            temp = temp.next;
+        }
+    }
+     public static ListNode mergeTwoLists(ListNode A, ListNode B) {
+         ListNode temp1 = A;
+         ListNode temp2 = B;
+         ListNode ans = null;
+         while(temp1!=null && temp2!=null) {
+             if(temp1.val<temp2.val) {
+                 ListNode node = temp1;
+                 temp1 = temp1.next;
+                 ans = insert_node_end(ans,node);
+                 node = null;
+             }
+             else {
+                    ListNode node = temp2;
+                 temp2 = temp2.next;
+                 ans = insert_node_end(ans,node);
+                 node = null;
+             }
+         }
+         if(temp1!=null) insert_node_end(ans,temp1);
+         if(temp2!=null) insert_node_end(ans,temp2);
+         return ans;
+    }
+    public static ListNode insert_node_end(ListNode ans,ListNode node) {
+        if(ans==null) {
+            node.next = null;
+            ans = node;
+        }
+        else {
+            tailEnd.next=node;
+        }
+        tailEnd = node;
+        return ans;
+    } 
+    public static void insert_node_end_1(int value) {
+        ListNode node = new ListNode(value);
+        if(head==null) {
+            node.next = null;
+            head = node;
+        }
+        else {
+            tail.next=node;
+        }
+        tail = node;
+    } 
+    public static void insert_node_end_2(int value) {
+        ListNode node = new ListNode(value);
+        if(head2==null) {
+            node.next = null;
+            head2 = node;
+        }
+        else {
+            tail2.next=node;
+        }
+        tail2 = node;
+    } 
+    
+}
