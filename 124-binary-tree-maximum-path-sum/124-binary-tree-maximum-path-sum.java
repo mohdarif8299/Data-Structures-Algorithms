@@ -26,6 +26,6 @@ class Solution {
         int right = Math.max(maxPath(root.right), 0);
         
         ans = Math.max(ans, root.val + left + right);
-        return root.val + Math.max(0, Math.max(left, right));
+        return root.val + Math.max(0, Math.max(left,right));
     }
 }
